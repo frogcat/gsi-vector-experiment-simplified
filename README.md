@@ -17,7 +17,7 @@
 
 `Export Style.json` は単純に以下のコードを実行するだけのものです。`GSIBV.application._map._map` が mapbox-gl-js の Map インスタンスのようなので、これの [getStyle()](https://docs.mapbox.com/mapbox-gl-js/api/#map#getstyle) をコールすることで style.json を得ます。
 
-```
+```js
 var style = GSIBV.application._map._map.getStyle();
 MA.saveFile("style.json","application/json",JSON.stringify(style,null,2));
 break;
@@ -29,7 +29,7 @@ break;
 
 本来最小構成であればこんなコードで地図が表示されるはずです。
 
-```
+```js
 var map = new mapboxgl.Map({
   container: 'map',
   center: [135, 35],
@@ -41,7 +41,7 @@ var map = new mapboxgl.Map({
 
 ただ、実際には不具合が出るので、以下のようにプラグインの追加と styledata イベントのハンドラーを追加が必要でした。
 
-```
+```js
 mapboxgl.setRTLTextPlugin('https://gsi-cyberjapan.github.io/gsimaps-vector-experiment/mapbox-rtlplugin/vertical-text.js');
 var map = new mapboxgl.Map({
   container: 'map',
@@ -57,7 +57,7 @@ var map = new mapboxgl.Map({
 一部の注記が `<gsi-vertical>ほげほげ</gsi-vertical>` のように、マークアップされた状態で表示されるので、
 以下のコードで縦書きプラグインを導入して対処しています。
 
-```
+```js
 mapboxgl.setRTLTextPlugin('https://gsi-cyberjapan.github.io/gsimaps-vector-experiment/mapbox-rtlplugin/vertical-text.js');
 ```
 
