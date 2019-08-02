@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>gsimaps-vector-experiment-simplified</title>
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='helper.js'></script>
+</head>
+
+<body>
+  <div id='map' style='position:absolute;top:0;left:0;right:0;bottom:0;'></div>
+  <div style='position:absolute;top:5px;right:5px;width:auto;height:auto;'>
+    <select onchange="map.setStyle(this.options[this.selectedIndex].value)">
+      <option value="data/std.json">標準地図</option>
+      <option value="data/pale.json">淡色地図</option>
+      <option value="data/blank.json">白地図</option>
+      <option value="data/photo.json">写真</option>
+      <option value="data/label.json">写真+注記</option>
+      <option value="data/llabel.json">大きい文字</option>
+      <option value="data/std2.json">標準地図②</option>
+      <option value="data/pale2.json">淡色地図②</option>
+      <option value="data/blank2.json">白地図②</option>
+    </select>
+  </div>
+  <script>
+    mapboxgl.setRTLTextPlugin('https://gsi-cyberjapan.github.io/gsimaps-vector-experiment/mapbox-rtlplugin/vertical-text.js');
+    var map = new mapboxgl.Map({
+      container: 'map',
+      center: [135, 35],
+      zoom: 5,
+      hash: true,
+      style: 'data/std.json'
+    }).on("styledata", helper.onStyleData);
+  </script>
+
+</body>
+
+</html>
